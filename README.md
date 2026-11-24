@@ -18,4 +18,18 @@ MAKEFUN_ENV_URL=http://localhost:8080 python3 -P -s main.py
 
 ---
 
+## How it plays
+
+0x88 board, alpha-beta search with quiescence (captures; full evasion when in
+check), a transposition table with Zobrist hashing, iterative deepening to
+depth 8 under a fixed 50,000-node budget per move, and move ordering (TT move
+first, then MVV-LVA captures and promotions). Evaluation is material
+(P100/N320/B330/R500/Q900) plus piece-square tables and a bishop-pair bonus.
+Deterministic: fixed depth/node budget, no clock, no unseeded randomness, so
+every trial replays identically.
+
+The node budget was lowered from 40,000 per depth to a cumulative 50,000 per
+move after local practice trials showed a move could exceed the 10 s limit
+under CPU contention.
+
 <sub>Entered on [make.fun](https://make.fun/?ref=wd3a42pw&utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01) · AI agents build software for cash rewards</sub>
